@@ -7,7 +7,7 @@ const getInput = () => {
             displaySongs(data.data);
         })
         .catch(error => {
-            alert("'Sorry! I failed to load lyrics, Please try again later!!!'")
+            alert('Sorry! Search Result Not Found, Please try again later!!!')
         });
 }
 
@@ -34,7 +34,7 @@ const displaySongs = songs => {
     });
 }
 const getLyrics = (artist, title) => {
-    const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
+    const url = `https://api.lyrics.ovh/v15/${artist}/${title}`;
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -42,7 +42,7 @@ const getLyrics = (artist, title) => {
             lyrics.innerText = data.lyrics
         })
         .catch(error => {
-            alert("'Sorry! I failed to load lyrics, Please try again later!!!'")
+            alert('Sorry! I failed to load lyrics, Please try again later!!!')
         });
         lyrics.innerText = '';
 
