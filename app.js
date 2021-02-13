@@ -1,6 +1,12 @@
+document.getElementById("searchInput").addEventListener("keypress", function(event) {
+    if (event.key == 'Enter')
+    document.getElementById("searchBtn").click();
+});
+
 const getInput = () => {
     const inputValue = document.getElementById('searchInput').value;
     const url = `https://api.lyrics.ovh/suggest/${inputValue}`
+    toggleBtn();
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -30,7 +36,10 @@ const displaySongs = songs => {
         </div>`;
 
         songContainer.append(songDiv);
+        toggleBtn();
         document.getElementById('lyrics').innerText = '';
+        
+
     });
 }
 const getLyrics = (artist, title) => {
@@ -44,6 +53,9 @@ const getLyrics = (artist, title) => {
         .catch(error => {
             alert('Sorry! I failed to load lyrics, Please try again later!!!')
         });
-        lyrics.innerText = '';
-
+    lyrics.innerText = '';
+}
+const toggleBtn = () => {
+        const loadingSpinner = document.getElementById("loadingSpinner");
+        loadingSpinner.classList.toggle('invisible');
 }
